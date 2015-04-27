@@ -4,7 +4,7 @@ spectra which have spectroscopically confirmed redshifts.  This directly
 queries the SDSS database for the information, and thus can take a few
 minutes to run.
 """
-
+from __future__ import print_function
 import os
 import urllib
 # Supporting Python 2 and 3
@@ -12,7 +12,6 @@ try:
     import urllib.request as urllib2
 except ImportError:
     import urllib2
-from __future__ import print_function
 
 import numpy as np
 

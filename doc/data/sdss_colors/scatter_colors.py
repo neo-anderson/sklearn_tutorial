@@ -1,6 +1,6 @@
+from __future__ import print_function
 import numpy as np
 import pylab as pl
-from __future__ import print_function
 
 data = np.load('sdssdr6_colors_class_train.npy')
 

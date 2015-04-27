@@ -1,10 +1,11 @@
+from __future__ import print_function
+
 import os
 # Supporting Python 2 and 3
 try:
     import urllib.request as urllib2
 except ImportError:
     import urllib2
-from __future__ import print_function
 
 import numpy as np
 

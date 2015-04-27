@@ -1,5 +1,11 @@
 import os
-import urllib2
+# Supporting Python 2 and 3
+try:
+    import urllib.request as urllib2
+except ImportError:
+    import urllib2
+from __future__ import print_function
+
 import numpy as np
 
 DTYPE_TRAIN = [('u-g', np.float32),
@@ -28,7 +34,7 @@ opener = urllib2.build_opener(handler)
 destination = TRAIN_FILE.rstrip('.dat') + '.npy'
 if not os.path.exists(destination):
     url = SDSS_COLORS_URL + TRAIN_FILE
-    print "downloading data from", url
+    print("downloading data from", url)
     fhandle = opener.open(url)
     np.save(destination, np.loadtxt(opener.open(url), dtype=DTYPE_TRAIN))
 
@@ -36,7 +42,7 @@ if not os.path.exists(destination):
 destination = TEST_FILE.rstrip('.dat') + '.npy'
 if not os.path.exists(destination):
     url = SDSS_COLORS_URL + TEST_FILE
-    print "downloading data from", url
+    print("downloading data from", url)
     fhandle = opener.open(url)
     np.save(destination, np.loadtxt(opener.open(url), dtype=DTYPE_TEST))
 

@@ -1,5 +1,6 @@
 import numpy as np
 import pylab as pl
+from __future__ import print_function
 
 data = np.load('sdssdr6_colors_class_train.npy')
 
@@ -9,8 +10,8 @@ data = data[:10000]
 
 redshift = data['redshift']
 
-print "%i qsos" % np.sum(redshift > 0)
-print "%i stars" % np.sum(redshift == 0)
+print("%i qsos" % np.sum(redshift > 0))
+print("%i stars" % np.sum(redshift == 0))
 
 kwargs = dict(s=1, c=(redshift > 0), lw=0)
 

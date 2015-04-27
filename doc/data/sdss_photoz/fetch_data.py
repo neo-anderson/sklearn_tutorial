@@ -6,7 +6,14 @@ minutes to run.
 """
 
 import os
-import urllib, urllib2
+import urllib
+# Supporting Python 2 and 3
+try:
+    import urllib.request as urllib2
+except ImportError:
+    import urllib2
+from __future__ import print_function
+
 import numpy as np
 
 # Here's how the data can be downloaded directly from the SDSS server.
@@ -42,17 +49,17 @@ def fetch_data_sql(N = 50000):
 
 
     if not os.path.exists(archive_file):
-        print "querying for %i objects" % N
-        print query_text
+        print("querying for %i objects" % N)
+        print(query_text)
         output = sql_query(query_text)
-        print "finished.  Processing & saving data"
+        print("finished.  Processing & saving data")
         try:
             data = np.loadtxt(output, delimiter=',', skiprows=1, dtype=DTYPE)
         except:
             raise ValueError(output.read())
         np.save(archive_file, data)
     else:
-        print "data already on disk"
+        print("data already on disk")
 
 
 DATA_URL = ('http://www.astro.washington.edu/users/'
@@ -67,6 +74,6 @@ opener = urllib2.build_opener(handler)
 
 # download training data
 if not os.path.exists(LOCAL_FILE):
-    print "downloading data from", DATA_URL
+    print("downloading data from", DATA_URL)
     fhandle = opener.open(DATA_URL)
     open(LOCAL_FILE, 'wb').write(fhandle.read())

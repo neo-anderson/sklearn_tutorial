@@ -1,5 +1,12 @@
 import os
-import urllib2
+
+# Supporting Python 2 and 3
+try:
+    import urllib.request as urllib2
+except ImportError:
+    import urllib2
+from __future__ import print_function
+
 import numpy as np
 
 DATA_URL = ('http://www.astro.washington.edu/users/'
@@ -14,6 +21,6 @@ opener = urllib2.build_opener(handler)
 
 # download training data
 if not os.path.exists(LOCAL_FILE):
-    print "downloading data from", DATA_URL
+    print("downloading data from", DATA_URL)
     fhandle = opener.open(DATA_URL)
     open(LOCAL_FILE, 'wb').write(fhandle.read())
